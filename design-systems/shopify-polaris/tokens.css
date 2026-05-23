@@ -1,0 +1,131 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * design-systems/shopify-polaris/tokens.css
+ *
+ * Structured token bindings for Shopify Polaris — the admin design system
+ * behind Shopify's merchant dashboard. Light-first, data-dense, Inter
+ * font, semantic-only color, bevel button shadows.
+ *
+ * All values sourced from polaris-tokens v9 (polaris-react.shopify.com/tokens).
+ * ─────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Surface ─────────────────────────────────────────────────────
+   * Polaris is light-first: gray canvas (#F1F1F1) with white cards.
+   * The gray-vs-white contrast IS the depth mechanism. */
+  --bg: #f1f1f1;
+  --surface: #ffffff;
+  --surface-warm: #f7f7f7;
+
+  /* ─── Foreground ramp ─────────────────────────────────────────────
+   * #303030 (not pure black) is the signature text color. Secondary
+   * text at #616161, muted at #8A8A8A. */
+  --fg: #303030;
+  --fg-2: #4a4a4a;
+  --muted: #616161;
+  --meta: #8a8a8a;
+
+  /* ─── Border ──────────────────────────────────────────────────────
+   * Light gray borders define card edges and dividers. Input borders
+   * are darker (#8A8A8A) for contrast against near-white surfaces. */
+  --border: #e3e3e3;
+  --border-soft: #ebebeb;
+
+  /* ─── Accent ──────────────────────────────────────────────────────
+   * Shopify blue (#005BD3) for links, focus rings, and emphasis.
+   * Not used for primary buttons — those use --brand (#303030). */
+  --accent: #005bd3;
+  --accent-on: #ffffff;
+  --accent-hover: #004299;
+  --accent-active: #002e6a;
+
+  /* ─── Semantic ────────────────────────────────────────────────────
+   * Polaris has deep semantic color roles: success is teal-green,
+   * danger is clear red, warning is amber. */
+  --success: #047b5d;
+  --warn: #ffb800;
+  --danger: #c70a24;
+
+  /* ─── Typography ──────────────────────────────────────────────────
+   * Inter for everything. Polaris uses heavier-than-standard weights:
+   * 450 regular, 550 medium, 650 semibold, 700 bold. */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Type scale — compact; body at 13px, headings rarely above 24px */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-lg: 14px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+
+  --leading-body: 1.54;
+  --leading-tight: 1.14;
+  --tracking-display: -0.2px;
+
+  /* ─── Spacing ─────────────────────────────────────────────────────
+   * 4px base unit. Card padding is 16px, table cells 6px. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-20: 80px;
+
+  --section-y-desktop: 40px;
+  --section-y-tablet: 32px;
+  --section-y-phone: 24px;
+
+  /* ─── Radius ──────────────────────────────────────────────────────
+   * 8px for buttons/inputs, 12px for cards/banners, pill for badges */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* ─── Elevation ───────────────────────────────────────────────────
+   * Polaris uses barely-there shadows. Cards rest on shadow-100.
+   * Buttons use multi-layer bevel shadows instead of blur. */
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 1px 0 0 rgba(26, 26, 26, 0.07);
+
+  /* ─── Focus ring ──────────────────────────────────────────────────
+   * Blue outline, offset 2px — consistent across all interactive
+   * elements. Appears on :focus-visible only. */
+  --focus-ring: 0 0 0 2px var(--accent);
+
+  /* ─── Motion ──────────────────────────────────────────────────────
+   * Polaris transitions: 100-150ms for hover, 200-300ms for
+   * modal/sheet appear. */
+  --motion-fast: 100ms;
+  --motion-base: 200ms;
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────────
+   * Admin pages constrained to ~1000px. Tighter gutters than
+   * marketing — this is a workspace. */
+  --container-max: 1000px;
+  --container-gutter-desktop: 20px;
+  --container-gutter-tablet: 16px;
+  --container-gutter-phone: 12px;
+
+  /* ─── Polaris-specific extensions ─────────────────────────────────
+   * Brand fill (#303030) for primary buttons — distinct from accent.
+   * Semantic surface colors for banners. */
+  --brand: #303030;
+  --brand-hover: #1a1a1a;
+  --brand-on: #ffffff;
+  --nav-bg: #ebebeb;
+  --input-border: #8a8a8a;
+  --surface-info: #eaf4ff;
+  --surface-success: #cdfed4;
+  --surface-warning: #fff1e3;
+  --surface-critical: #fee8eb;
+}

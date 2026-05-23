@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shopify Polaris — reference components</title>
+    <meta
+      name="description"
+      content="Reference fixture for design-systems/shopify-polaris. Demonstrates
+        the Polaris admin aesthetic: gray canvas, white cards, bevel buttons,
+        compact Inter typography, semantic color roles."
+    />
+
+    <style>
+      :root {
+        --bg: #f1f1f1;
+        --surface: #ffffff;
+        --surface-warm: #f7f7f7;
+
+        --fg: #303030;
+        --fg-2: #4a4a4a;
+        --muted: #616161;
+        --meta: #8a8a8a;
+
+        --border: #e3e3e3;
+        --border-soft: #ebebeb;
+
+        --accent: #005bd3;
+        --accent-on: #ffffff;
+        --accent-hover: #004299;
+        --accent-active: #002e6a;
+
+        --success: #047b5d;
+        --warn: #ffb800;
+        --danger: #c70a24;
+
+        --font-display: "Inter", -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+        --font-body: "Inter", -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+        --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+        --text-xs: 11px;
+        --text-sm: 12px;
+        --text-base: 13px;
+        --text-lg: 14px;
+        --text-xl: 20px;
+        --text-2xl: 24px;
+        --text-3xl: 30px;
+        --text-4xl: 36px;
+
+        --leading-body: 1.54;
+        --leading-tight: 1.14;
+        --tracking-display: -0.2px;
+
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --space-20: 80px;
+
+        --section-y-desktop: 40px;
+        --section-y-tablet: 32px;
+        --section-y-phone: 24px;
+
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-pill: 9999px;
+
+        --elev-flat: none;
+        --elev-ring: 0 0 0 1px var(--border);
+        --elev-raised: 0 1px 0 0 rgba(26, 26, 26, 0.07);
+
+        --focus-ring: 0 0 0 2px var(--accent);
+
+        --motion-fast: 100ms;
+        --motion-base: 200ms;
+        --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+        --container-max: 1000px;
+        --container-gutter-desktop: 20px;
+        --container-gutter-tablet: 16px;
+        --container-gutter-phone: 12px;
+
+        --brand: #303030;
+        --brand-hover: #1a1a1a;
+        --brand-on: #ffffff;
+        --nav-bg: #ebebeb;
+        --input-border: #8a8a8a;
+        --surface-info: #eaf4ff;
+        --surface-success: #cdfed4;
+        --surface-warning: #fff1e3;
+        --surface-critical: #fee8eb;
+      }
+
+      /* ─── Reset ─────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        line-height: var(--leading-body);
+        font-weight: 450;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ─── Admin shell ───────────────────────────────────────── */
+      .shell {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        grid-template-rows: 56px 1fr;
+        min-height: 100vh;
+      }
+      @media (max-width: 1039px) {
+        .shell { grid-template-columns: 1fr; }
+        .nav { display: none; }
+      }
+
+      /* ─── Top bar ───────────────────────────────────────────── */
+      .topbar {
+        grid-column: 1 / -1;
+        background: var(--brand);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--space-4);
+        gap: var(--space-4);
+      }
+      .topbar-logo {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 650;
+        color: var(--brand-on);
+        letter-spacing: -0.2px;
+      }
+      .topbar-search {
+        flex: 1;
+        max-width: 580px;
+        margin: 0 auto;
+        padding: 7px var(--space-3);
+        border-radius: var(--radius-sm);
+        border: none;
+        background: rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.7);
+        font-family: inherit;
+        font-size: var(--text-base);
+        font-weight: 450;
+        outline: none;
+      }
+      .topbar-search::placeholder { color: rgba(255, 255, 255, 0.5); }
+      .topbar-search:focus {
+        background: rgba(255, 255, 255, 0.18);
+        color: var(--brand-on);
+      }
+      .topbar-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-sm);
+        font-weight: 550;
+        color: var(--brand-on);
+      }
+
+      /* ─── Navigation sidebar ────────────────────────────────── */
+      .nav {
+        background: var(--nav-bg);
+        padding: var(--space-3) var(--space-2);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+        overflow-y: auto;
+      }
+      .nav-section {
+        font-size: var(--text-sm);
+        font-weight: 650;
+        color: var(--muted);
+        padding: var(--space-3) var(--space-2) var(--space-1);
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 6px var(--space-2);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-base);
+        font-weight: 450;
+        color: var(--fg);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background var(--motion-fast) var(--ease-standard);
+      }
+      .nav-item:hover { background: var(--surface-warm); }
+      .nav-item.active {
+        background: #fafafa;
+        font-weight: 650;
+      }
+      .nav-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        background: var(--meta);
+        opacity: 0.3;
+        flex-shrink: 0;
+      }
+      .nav-item.active .nav-icon { opacity: 0.5; }
+      .nav-badge {
+        margin-left: auto;
+        font-size: var(--text-xs);
+        font-weight: 550;
+        background: var(--surface-critical);
+        color: #8e0b21;
+        padding: 1px 6px;
+        border-radius: var(--radius-pill);
+      }
+
+      /* ─── Page content ──────────────────────────────────────── */
+      .page {
+        padding: var(--space-5) var(--space-5);
+        overflow-y: auto;
+      }
+      .page-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-4);
+        margin-bottom: var(--space-5);
+      }
+      .page-title {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-display);
+        margin: 0;
+      }
+      .page-subtitle {
+        font-size: var(--text-base);
+        color: var(--muted);
+        margin: var(--space-1) 0 0;
+      }
+
+      /* ─── Cards ─────────────────────────────────────────────── */
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        box-shadow: var(--elev-raised);
+        padding: var(--space-4);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+      .card + .card { margin-top: var(--space-4); }
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .card-title {
+        font-size: var(--text-lg);
+        font-weight: 650;
+        line-height: 1.43;
+        margin: 0;
+      }
+      .card-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+
+      /* ─── Buttons ───────────────────────────────────────────── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        font-family: inherit;
+        font-size: var(--text-base);
+        font-weight: 650;
+        line-height: 1;
+        cursor: pointer;
+        border: none;
+        transition: background var(--motion-fast) var(--ease-standard);
+        text-decoration: none;
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn-primary {
+        background: var(--brand);
+        color: var(--brand-on);
+        box-shadow:
+          0 -1px 0 1px rgba(0,0,0,0.8) inset,
+          0 0 0 1px rgba(48,48,48,1) inset,
+          0 0.5px 0 1.5px rgba(255,255,255,0.25) inset;
+      }
+      .btn-primary:hover { background: var(--brand-hover); }
+      .btn-primary:active {
+        box-shadow: 0 3px 0 0 rgb(0,0,0) inset;
+      }
+      .btn-secondary {
+        background: var(--surface);
+        color: var(--fg);
+        box-shadow:
+          0 -1px 0 0 #b5b5b5 inset,
+          0 0 0 1px rgba(0,0,0,0.1) inset,
+          0 0.5px 0 1.5px #fff inset;
+      }
+      .btn-secondary:hover {
+        background: #f7f7f7;
+        box-shadow:
+          0 1px 0 0 #ebebeb inset,
+          -1px 0 0 0 #ebebeb inset,
+          1px 0 0 0 #ebebeb inset,
+          0 -1px 0 0 #ccc inset;
+      }
+      .btn-tertiary {
+        background: transparent;
+        color: var(--fg);
+      }
+      .btn-tertiary:hover { background: var(--surface-warm); }
+      .btn-plain {
+        background: transparent;
+        color: var(--accent);
+        padding: 0;
+        font-weight: 450;
+      }
+      .btn-plain:hover { text-decoration: underline; }
+      .btn-destructive {
+        background: var(--danger);
+        color: #ffffff;
+        box-shadow:
+          0 -1px 0 1px rgba(142,31,11,0.8) inset,
+          0 0 0 1px rgba(181,38,11,0.8) inset,
+          0 0.5px 0 1.5px rgba(255,255,255,0.35) inset;
+      }
+
+      /* ─── Inputs ────────────────────────────────────────────── */
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+      }
+      .field label {
+        font-size: var(--text-base);
+        font-weight: 450;
+      }
+      .field input, .field select {
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--input-border);
+        background: #fdfdfd;
+        color: var(--fg);
+        font-family: inherit;
+        font-size: var(--text-base);
+        font-weight: 450;
+        outline: none;
+        transition: border-color var(--motion-fast) var(--ease-standard);
+      }
+      .field input:hover, .field select:hover {
+        border-color: var(--muted);
+      }
+      .field input:focus, .field select:focus {
+        border-color: #1a1a1a;
+        box-shadow: var(--focus-ring);
+      }
+      .field input::placeholder { color: var(--meta); }
+      .field-help {
+        font-size: var(--text-sm);
+        color: var(--muted);
+      }
+      .field-error {
+        font-size: var(--text-sm);
+        color: #8e0b21;
+      }
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+      @media (max-width: 639px) {
+        .field-row { grid-template-columns: 1fr; }
+      }
+
+      /* ─── Badges ────────────────────────────────────────────── */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: var(--radius-pill);
+        font-size: var(--text-sm);
+        font-weight: 450;
+        line-height: 1.6;
+      }
+      .badge-default { background: var(--border); color: var(--fg); }
+      .badge-success { background: var(--success); color: #ffffff; }
+      .badge-warning { background: var(--warn); color: #5e4200; }
+      .badge-critical { background: var(--danger); color: #ffffff; }
+      .badge-info { background: #91d0ff; color: #003a5a; }
+
+      /* ─── Banners ───────────────────────────────────────────── */
+      .banner {
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-md);
+        border: 1px solid;
+        display: flex;
+        gap: var(--space-3);
+        align-items: flex-start;
+        font-size: var(--text-base);
+      }
+      .banner-info {
+        background: var(--surface-info);
+        border-color: #a8d8ff;
+        color: #003a5a;
+      }
+      .banner-success {
+        background: var(--surface-success);
+        border-color: #92fcac;
+        color: #014b40;
+      }
+      .banner-warning {
+        background: var(--surface-warning);
+        border-color: #ffc879;
+        color: #5e4200;
+      }
+      .banner-critical {
+        background: var(--surface-critical);
+        border-color: #fec1c7;
+        color: #8e0b21;
+      }
+      .banner-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .banner-title {
+        font-weight: 650;
+        margin-bottom: 2px;
+      }
+
+      /* ─── Data table ────────────────────────────────────────── */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-base);
+      }
+      .data-table th {
+        text-align: left;
+        font-size: var(--text-sm);
+        font-weight: 650;
+        color: var(--muted);
+        padding: 6px var(--space-3);
+        border-bottom: 1px solid var(--border);
+      }
+      .data-table td {
+        padding: var(--space-3);
+        border-bottom: 1px solid var(--bg);
+        vertical-align: middle;
+      }
+      .data-table tr:hover td {
+        background: var(--surface-warm);
+      }
+      .data-table .numeric {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ─── Links ─────────────────────────────────────────────── */
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        color: var(--accent-hover);
+      }
+
+      /* ─── Layout ────────────────────────────────────────────── */
+      .stack-3 > * + * { margin-top: var(--space-3); }
+      .stack-4 > * + * { margin-top: var(--space-4); }
+      .annotated-layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: var(--space-5);
+        align-items: start;
+      }
+      @media (max-width: 767px) {
+        .annotated-layout { grid-template-columns: 1fr; }
+      }
+      .annotated-description h3 {
+        font-size: var(--text-lg);
+        font-weight: 650;
+        margin: 0;
+      }
+      .annotated-description p {
+        font-size: var(--text-base);
+        color: var(--muted);
+        margin: var(--space-1) 0 0;
+      }
+      .btn-group {
+        display: flex;
+        gap: var(--space-2);
+      }
+
+      h1, h2, h3 { margin: 0; }
+      p { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <!-- ═══ Top Bar ═══════════════════════════════════════════ -->
+      <header class="topbar">
+        <span class="topbar-logo">shopify</span>
+        <input
+          class="topbar-search"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <div class="topbar-avatar" aria-label="Account">J</div>
+      </header>
+
+      <!-- ═══ Navigation ════════════════════════════════════════ -->
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Home
+        </a>
+        <a class="nav-item active" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Orders
+          <span class="nav-badge">3</span>
+        </a>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Products
+        </a>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Customers
+        </a>
+        <span class="nav-section">Sales channels</span>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Online Store
+        </a>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Point of Sale
+        </a>
+        <span class="nav-section">Apps</span>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Discounts
+        </a>
+        <a class="nav-item" href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Analytics
+        </a>
+      </nav>
+
+      <!-- ═══ Page Content ══════════════════════════════════════ -->
+      <main class="page">
+        <!-- Page header -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Orders</h1>
+            <p class="page-subtitle">Manage and fulfill customer orders</p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary">Export</button>
+            <button class="btn btn-primary">Create order</button>
+          </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="banner banner-warning" style="margin-bottom: var(--space-4)">
+          <svg class="banner-icon" viewBox="0 0 20 20" fill="#b28400" aria-hidden="true">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 11a1 1 0 110-2 1 1 0 010 2zm1-4a1 1 0 01-2 0V6a1 1 0 012 0v3z"/>
+          </svg>
+          <div>
+            <div class="banner-title">3 orders require attention</div>
+            <span>Some orders have payment issues that need to be resolved before fulfillment.</span>
+          </div>
+        </div>
+
+        <!-- Orders table card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent orders</h2>
+            <button class="btn btn-plain">View all</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Fulfillment</th>
+                <th class="numeric">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">#1042</a></td>
+                <td>Maya Johnson</td>
+                <td><span class="badge badge-success">Paid</span></td>
+                <td><span class="badge badge-default">Unfulfilled</span></td>
+                <td class="numeric">$284.00</td>
+              </tr>
+              <tr>
+                <td><a href="#">#1041</a></td>
+                <td>James Chen</td>
+                <td><span class="badge badge-success">Paid</span></td>
+                <td><span class="badge badge-success">Fulfilled</span></td>
+                <td class="numeric">$142.50</td>
+              </tr>
+              <tr>
+                <td><a href="#">#1040</a></td>
+                <td>Sarah Williams</td>
+                <td><span class="badge badge-warning">Pending</span></td>
+                <td><span class="badge badge-default">Unfulfilled</span></td>
+                <td class="numeric">$67.00</td>
+              </tr>
+              <tr>
+                <td><a href="#">#1039</a></td>
+                <td>Alex Rivera</td>
+                <td><span class="badge badge-critical">Refunded</span></td>
+                <td><span class="badge badge-info">Returned</span></td>
+                <td class="numeric">$195.25</td>
+              </tr>
+              <tr>
+                <td><a href="#">#1038</a></td>
+                <td>Emma Larsson</td>
+                <td><span class="badge badge-success">Paid</span></td>
+                <td><span class="badge badge-success">Fulfilled</span></td>
+                <td class="numeric">$412.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Settings-style annotated layout -->
+        <div style="margin-top: var(--space-8)">
+          <div class="annotated-layout">
+            <div class="annotated-description">
+              <h3>Shipping settings</h3>
+              <p>Configure how shipping rates are calculated and displayed to customers at checkout.</p>
+            </div>
+            <div class="card">
+              <div class="field-row">
+                <div class="field">
+                  <label for="origin">Ship from</label>
+                  <select id="origin">
+                    <option>Primary warehouse — Portland, OR</option>
+                    <option>East Coast — Brooklyn, NY</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="weight">Default weight unit</label>
+                  <select id="weight">
+                    <option>Pounds (lb)</option>
+                    <option>Kilograms (kg)</option>
+                    <option>Ounces (oz)</option>
+                  </select>
+                </div>
+              </div>
+              <hr class="card-divider" />
+              <div class="field">
+                <label for="handling">Handling fee</label>
+                <input id="handling" type="text" value="$2.50" />
+                <span class="field-help">Added to every shipment. Set to $0 to disable.</span>
+              </div>
+              <div style="display: flex; justify-content: flex-end; gap: var(--space-2)">
+                <button class="btn btn-secondary">Discard</button>
+                <button class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner variants -->
+        <div style="margin-top: var(--space-8)">
+          <h2 class="card-title" style="margin-bottom: var(--space-4)">Status indicators</h2>
+          <div class="stack-3">
+            <div class="banner banner-info">
+              <svg class="banner-icon" viewBox="0 0 20 20" fill="#0094d5" aria-hidden="true">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9V9h2v4zm0-6H9V5h2v2z"/>
+              </svg>
+              <div>
+                <div class="banner-title">New shipping carrier available</div>
+                <span>DHL Express is now available in your region. <a href="#">Connect account</a></span>
+              </div>
+            </div>
+            <div class="banner banner-success">
+              <svg class="banner-icon" viewBox="0 0 20 20" fill="#047b5d" aria-hidden="true">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.7 6.3l-4 4a1 1 0 01-1.4 0l-2-2a1 1 0 011.4-1.4L9 10.2l3.3-3.3a1 1 0 011.4 1.4z"/>
+              </svg>
+              <div>
+                <div class="banner-title">Inventory sync complete</div>
+                <span>All 247 products are up to date across 3 locations.</span>
+              </div>
+            </div>
+            <div class="banner banner-critical">
+              <svg class="banner-icon" viewBox="0 0 20 20" fill="#e22c38" aria-hidden="true">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/>
+              </svg>
+              <div>
+                <div class="banner-title">Payment gateway error</div>
+                <span>Stripe connection failed. Customers cannot complete checkout. <a href="#">Reconnect</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
