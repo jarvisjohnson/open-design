@@ -137,12 +137,13 @@ Depth is functional, not decorative. Buttons get bevel shadows to signal clickab
 
 ### Font Family
 
-**Primary:** Inter
-- Fallbacks: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif
-- Used for all text — headings, body, buttons, labels, everything
+**Display:** Inter, -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif
+- Used for all headings from 36px page titles down to 12px card headings
 
-**Monospace:** ui-monospace
-- Fallbacks: SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace
+**Body:** Inter, -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif
+- Used for body text, buttons, labels, form elements — everything that isn't a heading
+
+**Monospace:** ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace
 - Used for code snippets, technical data
 
 ### Hierarchy
